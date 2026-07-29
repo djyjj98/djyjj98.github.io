@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minjeong Kim's Web and Digital Design portfolio featuring web development, JavaScript, WordPress, Photoshop, and Illustrator projects.">
+  <title>Minjeong Kim | Web & Digital Design Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #fffaf8;
+      --surface: #ffffff;
+      --text: #28242a;
+      --muted: #6d6670;
+      --accent: #9b5369;
+      --accent-dark: #77384d;
+      --accent-soft: #f3e4e8;
+      --line: #eadde1;
+      --shadow: 0 14px 40px rgba(65, 40, 50, 0.10);
+      --radius: 22px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      padding: 0.75rem 1rem;
+      background: var(--text);
+      color: white;
+      z-index: 1000;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 250, 248, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(234, 221, 225, 0.9);
+    }
+
+    .nav-wrap {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 0.6rem 0.8rem;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .site-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 1.35rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      padding: 7rem 0 5rem;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(155, 83, 105, 0.18), transparent 26rem),
+        linear-gradient(135deg, #fffaf8 0%, #f8edf0 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.8rem;
+      color: var(--accent-dark);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 1.25rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: -0.045em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 0 0 2rem;
+      color: var(--muted);
+      font-size: 1.13rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.75rem 1.2rem;
+      border: 2px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--accent-dark);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 470px;
+    }
+
+    .hero-card {
+      position: absolute;
+      overflow: hidden;
+      border: 10px solid white;
+      border-radius: 28px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-card.main {
+      inset: 0 2rem 2rem 0;
+    }
+
+    .hero-card.small {
+      width: 48%;
+      height: 45%;
+      right: 0;
+      bottom: 0;
+      transform: rotate(4deg);
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 670px;
+    }
+
+    .about {
+      background: var(--surface);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .portrait {
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      aspect-ratio: 4 / 5;
+      background: var(--accent-soft);
+    }
+
+    .portrait img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-copy {
+      font-size: 1.05rem;
+    }
+
+    .about-copy p:first-child {
+      margin-top: 0;
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .fact {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--bg);
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--accent-dark);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 8px 26px rgba(65, 40, 50, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-image {
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--accent-soft);
+    }
+
+    .project-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.025);
+    }
+
+    .project-content {
+      padding: 1.45rem;
+    }
+
+    .project-type {
+      margin: 0 0 0.45rem;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .project-content h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.45rem;
+    }
+
+    .project-content p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tag {
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .project-link {
+      color: var(--accent-dark);
+      font-weight: 800;
+      text-underline-offset: 0.2em;
+    }
+
+    .gallery-section {
+      background: var(--surface);
+    }
+
+    .gallery {
+      columns: 3 280px;
+      column-gap: 1rem;
+    }
+
+    .gallery figure {
+      break-inside: avoid;
+      margin: 0 0 1rem;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+    }
+
+    .gallery img {
+      height: auto;
+    }
+
+    .gallery figcaption {
+      padding: 0.8rem 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group {
+      padding: 1.4rem;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .skill-group h3 {
+      margin-bottom: 0.8rem;
+      color: var(--accent-dark);
+    }
+
+    .skill-group ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .resume-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      padding: 2.2rem;
+      border-radius: var(--radius);
+      background: var(--text);
+      color: white;
+    }
+
+    .resume-panel h2 {
+      margin-bottom: 0.5rem;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+    }
+
+    .resume-panel p {
+      margin: 0;
+      color: #ddd7de;
+    }
+
+    .contact {
+      background: linear-gradient(135deg, #f4e4e9, #fffaf8);
+    }
+
+    .contact-card {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem;
+      text-align: center;
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .section-heading,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 5rem;
+      }
+
+      .hero-art {
+        min-height: 400px;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav-toggle {
+        display: inline-block;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+        display: none;
+        padding: 1rem;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .site-nav.open {
+        display: block;
+      }
+
+      .site-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .site-nav a {
+        display: block;
+        padding: 0.65rem;
+      }
+
+      .hero-art {
+        min-height: 320px;
+      }
+
+      .hero-card.main {
+        inset: 0 1rem 1rem 0;
+      }
+
+      .quick-facts,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resume-panel {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-card {
+        padding: 2rem 1.25rem;
+      }
+
+      section {
+        padding: 4.5rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home">MINJEONG <span>KIM</span></a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        Menu
+      </button>
+
+      <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#gallery">Design Gallery</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Web & Digital Designer</p>
+          <h1>Designing thoughtful <span>digital experiences.</span></h1>
+          <p class="hero-copy">
+            I am Minjeong Kim, a Web and Digital Design student who creates responsive websites,
+            visual identities, illustrations, and interactive projects using design and front-end
+            development tools.
+          </p>
+
+          <div class="button-row">
+            <a class="button" href="#projects">View My Work</a>
+            <a class="button secondary" href="files/Minjeong_Kim_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Selected portfolio artwork">
+          <div class="hero-card main">
+            <img src="images/florist-website.jpg" alt="Preview of Minjeong Kim's florist WordPress website">
+          </div>
+          <div class="hero-card small">
+            <img src="images/m-floral-logo.jpg" alt="M Floral Design logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">About Me</p>
+            <h2>Where design and technology meet.</h2>
+          </div>
+          <p>
+            My portfolio brings together web development, user-centered design, photography,
+            illustration, and image editing. I enjoy transforming ideas into clear, polished,
+            and accessible digital experiences.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="portrait">
+            <img src="images/profile-photo.jpg" alt="Portrait of Minjeong Kim">
+          </div>
+
+          <div class="about-copy">
+            <p>
+              I am currently completing a Bachelor of Science in Web and Digital Design at the
+              University of Maryland Global Campus. Through my coursework, I have developed skills
+              in HTML, CSS, JavaScript, WordPress, Adobe Photoshop, Adobe Illustrator, responsive
+              design, and visual communication.
+            </p>
+            <p>
+              My professional goal is to work as a front-end web developer or web and digital
+              interface designer. I am especially interested in creating websites that are visually
+              engaging, easy to navigate, and useful across different devices.
+            </p>
+
+            <div class="quick-facts">
+              <div class="fact">
+                <strong>Education</strong>
+                B.S. Web & Digital Design, Junior Year
+              </div>
+              <div class="fact">
+                <strong>Career Focus</strong>
+                Front-End Development and Digital Design
+              </div>
+              <div class="fact">
+                <strong>Location</strong>
+                New Jersey
+              </div>
+              <div class="fact">
+                <strong>Design Approach</strong>
+                Clear, polished, responsive, and user-centered
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Featured Work</p>
+            <h2>Selected projects.</h2>
+          </div>
+          <p>
+            These projects demonstrate my experience with web design, content management systems,
+            JavaScript, branding, illustration, and image editing.
+          </p>
+        </div>
+
+        <div class="featured-grid">
+          <article class="project-card">
+            <div class="project-image">
+              <img src="images/florist-website.jpg" alt="Florist website displayed on desktop and mobile screens">
+            </div>
+            <div class="project-content">
+              <p class="project-type">WordPress / Web Design</p>
+              <h3>Min's Floral Studio</h3>
+              <p>
+                A responsive florist website developed with WordPress. The project includes branded
+                page layouts, service information, visual content, navigation, SEO considerations,
+                and security planning.
+              </p>
+              <div class="tags">
+                <span class="tag">WordPress</span>
+                <span class="tag">Responsive Design</span>
+                <span class="tag">SEO</span>
+              </div>
+              <a class="project-link" href="#" aria-label="View Min's Floral Studio project details">View project →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="images/javascript-projects.jpg" alt="Collage of JavaScript coursework projects">
+            </div>
+            <div class="project-content">
+              <p class="project-type">Front-End Development</p>
+              <h3>JavaScript Project Collection</h3>
+              <p>
+                A collection of interactive coursework including DOM selectors, form validation,
+                ticket purchasing calculations, countdown functionality, and a dynamic portfolio.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a class="project-link" href="projects/javascript/index.html">View project →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="images/stamp-series.jpg" alt="Illustrator stamp collection created by Minjeong Kim">
+            </div>
+            <div class="project-content">
+              <p class="project-type">Adobe Illustrator</p>
+              <h3>Illustrated Stamp Series</h3>
+              <p>
+                A coordinated stamp collection developed through vector illustration, consistent
+                color choices, typography, repetition, and visual hierarchy.
+              </p>
+              <div class="tags">
+                <span class="tag">Illustrator</span>
+                <span class="tag">Vector Art</span>
+                <span class="tag">Layout</span>
+              </div>
+              <a class="project-link" href="images/stamp-series.jpg" target="_blank" rel="noopener">View larger →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="images/korean-war-book-cover.jpg" alt="Korean War book cover created in Adobe Photoshop">
+            </div>
+            <div class="project-content">
+              <p class="project-type">Adobe Photoshop</p>
+              <h3>Korean War Book Cover</h3>
+              <p>
+                A historical book-cover composition combining image editing, typography, color
+                treatment, masking, and visual storytelling.
+              </p>
+              <div class="tags">
+                <span class="tag">Photoshop</span>
+                <span class="tag">Compositing</span>
+                <span class="tag">Typography</span>
+              </div>
+              <a class="project-link" href="images/korean-war-book-cover.jpg" target="_blank" rel="noopener">View larger →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Design Gallery</p>
+            <h2>More creative work.</h2>
+          </div>
+          <p>
+            Upload each image to the <strong>images</strong> folder using the exact filenames shown
+            in the code, or update each <code>src</code> value to match your filenames.
+          </p>
+        </div>
+
+        <div class="gallery">
+          <figure>
+            <img src="images/m-floral-logo.jpg" alt="M Floral Design logo">
+            <figcaption>M Floral Design logo and visual identity</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/figure-skater.jpg" alt="Figure skating image composition">
+            <figcaption>Figure skating Photoshop composition</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/movie-poster.jpg" alt="Original movie poster design">
+            <figcaption>Movie poster design</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/coloring-book.jpg" alt="Illustrated coloring book pages">
+            <figcaption>Illustrator coloring book pages</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/everglades-illustration.jpg" alt="Everglades vector illustration">
+            <figcaption>Everglades vector illustration</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/photography.jpg" alt="Photography project by Minjeong Kim">
+            <figcaption>Selected photography</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/stamp-series.jpg" alt="Illustrated stamp series">
+            <figcaption>Coordinated stamp series</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/korean-war-book-cover.jpg" alt="Korean War book cover">
+            <figcaption>Korean War book cover</figcaption>
+          </figure>
+
+          <figure>
+            <img src="images/web-design-project.jpg" alt="Responsive web design project">
+            <figcaption>Responsive web design project</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Capabilities</p>
+            <h2>Skills and tools.</h2>
+          </div>
+          <p>
+            My work combines technical development skills with graphic design principles,
+            visual communication, and user-centered thinking.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Development</h3>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Web Platforms</h3>
+            <ul>
+              <li>WordPress</li>
+              <li>GitHub Pages</li>
+              <li>Bootstrap</li>
+              <li>Content Management</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Design</h3>
+            <ul>
+              <li>Adobe Photoshop</li>
+              <li>Adobe Illustrator</li>
+              <li>Typography</li>
+              <li>Visual Hierarchy</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Professional</h3>
+            <ul>
+              <li>UX/UI Principles</li>
+              <li>Accessibility</li>
+              <li>SEO Fundamentals</li>
+              <li>Project Organization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume">
+      <div class="container">
+        <div class="resume-panel">
+          <div>
+            <p class="eyebrow">Professional Background</p>
+            <h2>View my resume.</h2>
+            <p>
+              Review my education, technical skills, featured projects, and professional experience.
+            </p>
+          </div>
+          <a class="button" href="files/Minjeong_Kim_Resume.pdf" target="_blank" rel="noopener">Open Resume PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-card">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s connect.</h2>
+          <p>
+            I am interested in opportunities related to front-end development, web design,
+            and digital interface design.
+          </p>
+
+          <div class="contact-links">
+            <!-- Replace the email address and LinkedIn URL below with your preferred information. -->
+            <a class="button" href="mailto:mkim110@student.umgc.edu">Email Me</a>
+            <a class="button secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="button secondary" href="https://github.com/djyjj98" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Minjeong Kim. Designed and developed for CMST 495.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const siteNav = document.querySelector(".site-nav");
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".site-nav a").forEach((link) => {
+      link.addEventListener("click", () => {
+        siteNav.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
