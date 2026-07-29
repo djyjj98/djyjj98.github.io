@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'Project 1: JavaScript Selectors',
             description: 'A DOM manipulation project using querySelector, querySelectorAll, class updates, and text changes.',
-            link: '../index.html'
+            link: '../Project 1/index.html'
         },
         {
             title: 'Project 2: Form Validation',
