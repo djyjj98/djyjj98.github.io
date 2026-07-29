@@ -1,1 +1,147 @@
+/* =====================================
+   CMST 388 Project 2
+   Registration Form Styles
+===================================== */
 
+/* Page Layout */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    margin: 30px;
+    color: #000;
+}
+
+/* Main Heading */
+h1 {
+    margin-bottom: 25px;
+}
+
+/* Form Container */
+form {
+    max-width: 800px;
+}
+
+/* Labels */
+label {
+    display: inline-block;
+    width: 180px;
+    margin-top: 12px;
+    vertical-align: top;
+    font-size: 18px;
+}
+
+/* Text Inputs */
+input[type="text"],
+select {
+    padding: 6px;
+    border: 1px solid #666;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Address & Email Fields */
+#firstName,
+#lastName,
+#address,
+#city,
+#email,
+#confirmEmail {
+    width: 250px;
+}
+
+/* Zip Code */
+#zip {
+    width: 100px;
+}
+
+/* Phone Fields */
+#areaCode {
+    width: 50px;
+}
+
+#phoneNumber {
+    width: 120px;
+}
+
+/* Textarea */
+textarea {
+    width: 300px;
+    height: 120px;
+    padding: 8px;
+    border: 1px solid #666;
+    resize: vertical;
+    font-size: 16px;
+}
+
+/* Radio Buttons and Checkboxes */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 6px;
+    margin-top: 10px;
+}
+
+/* Error Message Box */
+#errorMessages {
+    color: #b30000;
+    background-color: #ffe6e6;
+    border: 1px solid #b30000;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    display: none;
+}
+
+/* Buttons */
+button {
+    padding: 8px 18px;
+    margin-top: 20px;
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #444;
+    background-color: #f8f8f8;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Required Field Indicator */
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+/* Small Instruction Text */
+.instructions {
+    font-style: italic;
+    font-size: 14px;
+    margin-left: 180px;
+    color: #555;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+
+    label {
+        display: block;
+        width: auto;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #firstName,
+    #lastName,
+    #address,
+    #city,
+    #email,
+    #confirmEmail {
+        width: 100%;
+    }
+}
