@@ -22,17 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             title: 'Project 1: JavaScript Selectors',
             description: 'A DOM manipulation project using querySelector, querySelectorAll, class updates, and text changes.',
-            link: '../portfolio/Project 1/index.html'
+            link: '..portfolio/Project 1/index.html'
         },
         {
             title: 'Project 2: Form Validation',
             description: 'A web form project that validates user input and displays helpful feedback using JavaScript.',
-            link: '../portfolio/Project 2/index.html'
+            link: '..portfolio/Project 2/index.html'
         },
         {
             title: 'Project 3: Ticket Purchasing',
             description: 'An event ticket purchasing page that calculates totals and handles user input with JavaScript.',
-            link: '../portfolio/Project 3/event_registration.html'
+            link: '..portfolio/Project 3/event_registration.html'
         }
     ];
 
